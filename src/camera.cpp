@@ -53,7 +53,7 @@ cv::Mat Camera::render_normals(VoxelGrid &scene) {
     for (int j = 0; j < height; j++) {
         for (int i = 0; i < width; i++) {
             Vec3 hits;
-            Ray r = generate_ray(i, j, (samples_per_pixel > 1));
+            Ray r = generate_ray(i, j, false);
             HitInfo h = scene.hit(r);
 
             if (h.hit) {
