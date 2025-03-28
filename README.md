@@ -3,7 +3,7 @@
 ## Reconstruct Minecraft builds in 3D from screenshots
 
 ### How it works
-The voxelizer starts off with a rectangular block of voxels, then uses voxel carving to eliminate blocks by comparing the silhouettes of the current grid against the reference images. After each carving step, the program will show a visual of the current state of the grid, waiting for a keypress before beginning the next iteration. Once the grid converges, the program displays the grid from the angle of each reference picture against the actual picture itself. From there, you can load/render builds from different angles with different lighting. \\
+The voxelizer starts off with a rectangular block of voxels, then uses voxel carving to eliminate blocks by comparing the silhouettes of the current grid against the reference images. After each carving step, the program will show a visual of the current state of the grid, waiting for a keypress before beginning the next iteration. Once the grid converges, the program displays the grid from the angle of each reference picture against the actual picture itself. From there, you can load/render builds from different angles with different lighting. \
 
 To do so, the program uses a ray tracer inspired by the implementation [here](https://github.com/RayTracing/raytracing.github.io), a parser to extract coordinates, and an octree data structure to speed up ray-voxel intersections. Various class implementations are inspired by [Cardinal3D](https://github.com/stanford-cs248/Cardinal3D), as this is a more developed version of my final CS 248A project at Stanford.
 
@@ -41,22 +41,20 @@ cmake ..
 
 **image_dir flag is required to extract camera positions for reconstructing/rendering**
 
-Reconstruct and render build with default 10x10x10 voxel grid and GUI scale of 3:
+Examples:
 ```bash
+# Reconstruct and render build with default 10x10x10 voxel grid and GUI scale of 3:
 ./MinecraftReconstructor -d path_to_screenshots -r folder_to_save_renders
-```
 
-Reconstruct and save build to 10x15x20 voxel grid and GUI scale of 2:
-```bash
+# Reconstruct and save build to 10x15x20 voxel grid and GUI scale of 2:
 ./MinecraftReconstructor -d path_to_screenshots -s folder_to_save_build -y 15 -z 20 -g 2
-```
 
-Load and render build from camera positions in screenshots
-```bash
+# Load and render build from camera positions in screenshots
 ./MinecraftReconstructor -d path_to_screenshots -l path_to_build_file -r folder_to_save_renders
 ```
 
-There are also folders with sample screenshots, as well as their render results. Complex is a 10x10x10 grid with GUI scale 3, and dog is a 10x13x10 grid with GUI scale 2. \\
+### Samples
+There are also folders with sample screenshots, as well as their render results. `complex` is a 10x10x10 grid with GUI scale 3, and `dog` is a 10x13x10 grid with GUI scale 2. \
 
 They were created with the following commands in the `/build` folder:
 ```bash
