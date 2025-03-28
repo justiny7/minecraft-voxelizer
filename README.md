@@ -8,10 +8,15 @@ The voxelizer starts off with a rectangular block of voxels, then uses voxel car
 To do so, the program uses a ray tracer inspired by the implementation [here](https://github.com/RayTracing/raytracing.github.io), a parser to extract coordinates, and an octree data structure to speed up ray-voxel intersections. Various class implementations are inspired by [Cardinal3D](https://github.com/stanford-cs248/Cardinal3D), as this is a more developed version of my final CS 248A project at Stanford.
 
 ### Results
-![Complex build rendering](renders/complex/view5.png)
-![Complex build rendering](renders/complex/view4.png)
-![Complex build rendering](renders/complex/view11.png)
-*Rendering of complex geometric build*
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/a7d50502-ede5-4077-9e31-9cabd4389aad" width="250">
+    <img src="https://github.com/user-attachments/assets/fa34ee03-efcd-41f0-bfd0-a6a67fa424ca" width="250">
+    <img src="https://github.com/user-attachments/assets/489b6914-eadd-439c-8ba4-8276838f0f70" width="250">
+</p>
+
+_Rendering of complex geometric build_
+
+*Rendering of dog build*
 
 ## How to use it
 
