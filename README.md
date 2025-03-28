@@ -8,7 +8,12 @@ The voxelizer starts off with a rectangular block of voxels, then uses voxel car
 To do so, the program uses a ray tracer inspired by the implementation [here](https://github.com/RayTracing/raytracing.github.io), a parser to extract coordinates, and an octree data structure to speed up ray-voxel intersections. Various class implementations are inspired by [Cardinal3D](https://github.com/stanford-cs248/Cardinal3D), as this is a more developed version of my final CS 248A project at Stanford.
 
 ### Results
-
+<p align="center">
+    <img src="renders/complex/view5.png" width="250">
+    <img src="renders/complex/view4.png" width="250">
+    <img src="renders/complex/view11.png" width="250">
+</p>
+*Rendering of complex geometric build*
 
 ## How to use it
 
@@ -67,8 +72,9 @@ There are also folders with sample screenshots, as well as their render results.
 ./MinecraftReconstructor -d ../images/complex -l ../saved_builds/complex.build -r ../renders/complex
 ./MinecraftReconstructor -d ../images/dog -l ../saved_builds/dog.build -r ../renders/dog -g 2
 ```
+The different lightings used to render the builds are both in the `set_lights()` function of `include/voxelgrid.h`.
 
 ### More customization
-If you want to play around with different lightings, you can edit the `set_lights()` function in `include/voxelgrid.h`. If you want to add custom camera positions outside of those extracted from screenshots, you can edit the `Voxelizer` constructors in `src/voxelizer.cpp` - specifically, changing the cameras pushed into the `cams` vector.
+If you want to play around with different lightings, you can edit the `set_lights()` function in `include/voxelgrid.h`. If you want to add custom camera positions outside of those extracted from screenshots, you can edit the `Voxelizer` constructors in `src/voxelizer.cpp` - specifically, changing the cameras pushed into the `cams` vector. Feel free to add more command line options by editing `src/main.cpp`!
 
 
