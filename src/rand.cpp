@@ -18,7 +18,7 @@ namespace RNG {
         return unit() < p;
     }
 
-    Vec3 sample_hemisphere(float &pdf) { // cosine-weighted hemisphere sampling
+    Vec3 sample_hemisphere_cosine(float &pdf) { // cosine-weighted hemisphere sampling
         float Xi1 = RNG::unit();
         float Xi2 = RNG::unit();
 
@@ -30,6 +30,21 @@ namespace RNG {
         float zs = std::sin(theta) * std::sin(phi);
 
         pdf = ys / M_PI;
+        return Vec3(xs, ys, zs);
+    }
+
+    Vec3 sample_hemisphere_uniform(float &pdf) { // cosine-weighted hemisphere sampling
+        float Xi1 = RNG::unit();
+        float Xi2 = RNG::unit();
+
+        float theta = std::acos(Xi1);
+        float phi = 2.0f * M_PI * Xi2;
+
+        float xs = std::sin(theta) * std::cos(phi);
+        float ys = std::cos(theta);
+        float zs = std::sin(theta) * std::sin(phi);
+
+        pdf = 1 / (2.0f * M_PI);
         return Vec3(xs, ys, zs);
     }
 

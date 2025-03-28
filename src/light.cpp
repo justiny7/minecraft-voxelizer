@@ -20,7 +20,7 @@ LightSample Light::sample(Vec3 from) {
 
 LightSample HemisphereLight::sample() {
     LightSample res;
-    res.direction = RNG::sample_hemisphere(res.pdf);
+    res.direction = RNG::sample_hemisphere_uniform(res.pdf);
     res.radiance = radiance * res.direction.y;
     res.distance = FLT_MAX;
     return res;

@@ -31,22 +31,37 @@ struct VoxelGrid {
         lights.emplace_back(BBox(min, max), Vec3(50, 50, 50));
         */
 
-        // Blue and red square lights in the center
-        // Vec3 min(1.0f * size_x / 3, size_y + 3.0f, 1.0f * size_z / 3);
-        Vec3 min(0.0f, size_y + 3.0f, 0.0f);
+        /*
+        // Small blue and red square lights in the center
+        Vec3 min(1.0f * size_x / 3, size_y + 3.0f, 1.0f * size_z / 3);
         Vec3 max(1.0f * size_x / 2, size_y + 3.01f, 1.0f * size_z / 2);
-        lights.emplace_back(BBox(min, max), Spectrum(Vec3(255.0f, 105.0f, 180.0f), 10.0f));
-        // lights.emplace_back(BBox(min, max), Vec3(25.5f, 10.5f, 18.0f));
+        lights.emplace_back(BBox(min, max), Spectrum(Vec3(255.0f, 0.0f, 0.0f), 40.0f));
 
         Vec3 min2(1.0f * size_x / 2, size_y + 3.0f, 1.0f * size_z / 2);
-        Vec3 max2(1.0f * size_x, size_y + 3.01f, 1.0f * size_z);
-        // Vec3 max2(2.0f * size_x / 3, size_y + 3.01f, 2.0f * size_z / 3);
-        lights.emplace_back(BBox(min2, max2), Spectrum(Vec3(255.0f, 165.0f, 0.0f), 10.0f));
-        // lights.emplace_back(BBox(min2, max2), Vec3(25.5f, 16.5f, 0.0f));
+        Vec3 max2(2.0f * size_x / 3, size_y + 3.01f, 2.0f * size_z / 3);
+        lights.emplace_back(BBox(min2, max2), Spectrum(Vec3(0.0f, 0.0f, 255.0f), 40.0f));
+        */
+
+        // Big Microsoft logo lights
+        Vec3 min(0.0f, size_y + 3.0f, 0.0f);
+        Vec3 max(1.0f * size_x / 2, size_y + 3.01f, 1.0f * size_z / 2);
+        lights.emplace_back(BBox(min, max), Spectrum(Vec3(127.0f, 186.0f, 0.0f), 40.0f));
+
+        Vec3 min2(1.0f * size_x / 2, size_y + 3.0f, 0.0f);
+        Vec3 max2(1.0f * size_x, size_y + 3.01f, 1.0f * size_z / 2);
+        lights.emplace_back(BBox(min2, max2), Spectrum(Vec3(242.0f, 80.0f, 34.0f), 40.0f));
+
+        Vec3 min3(1.0f * size_x / 2, size_y + 3.0f, 1.0f * size_z / 2);
+        Vec3 max3(1.0f * size_x, size_y + 3.01f, 1.0f * size_z);
+        lights.emplace_back(BBox(min3, max3), Spectrum(Vec3(0.0f, 164.0f, 239.0f), 40.0f));
+
+        Vec3 min4(0.0f, size_y + 3.0f, 1.0f * size_z / 2);
+        Vec3 max4(1.0f * size_x / 2, size_y + 3.01f, 1.0f * size_z);
+        lights.emplace_back(BBox(min4, max4), Spectrum(Vec3(255.0f, 185.0f, 0.0f), 40.0f));
 
 
         // Weak environment light to illuminate build
-        env = HemisphereLight(Spectrum(0.75f));
+        env = HemisphereLight(Spectrum(Vec3(255.0f), 0.05f));
     }
     
     Voxel& at(size_t x, size_t y, size_t z) { return grid[get_idx(x, y, z)]; }

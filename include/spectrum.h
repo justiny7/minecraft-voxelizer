@@ -48,14 +48,18 @@ struct Spectrum { // Stores HDR values
     }
 
     static Spectrum direction(Vec3 v) {
-        // v /= 255.0;
-        v.normalize();
+        v /= 255.0;
         Spectrum s(std::abs(v.x), std::abs(v.y), std::abs(v.z));
         return s.linear();
     }
 
-    Spectrum apply_reinhard() {
-        return Spectrum(r / (1.0f + r), g / (1.0f + g), b / (1.0f + b));
+    Spectrum reinhard_luma() {
+        // Tone mapping by luma
+        Spectrum res = Spectrum(r, g, b) * (1.0f / (luma() + 1.0f));
+        res.r = std::min(1.0f, res.r);
+        res.g = std::min(1.0f, res.g);
+        res.b = std::min(1.0f, res.b);
+        return res;
     }
     Spectrum srgb() {
         return Spectrum(std::pow(r, 1.0f / GAMMA), std::pow(g, 1.0f / GAMMA), std::pow(b, 1.0f / GAMMA));

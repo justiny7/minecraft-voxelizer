@@ -10,7 +10,7 @@ struct BSDFSample {
 };
 
 struct BSDF { // Lambertian
-    BSDF() : albedo(0.8) {}
+    BSDF() : albedo(1.0) {}
     BSDF(Spectrum albedo_) : albedo(albedo_ / 255.0) {}
 
     BSDFSample sample(); // cosine-weighted hemisphere sampling

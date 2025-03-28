@@ -19,9 +19,6 @@ void Camera::camera_settings(int height_, float aspect_ratio_,
 }
 
 cv::Mat Camera::render(VoxelGrid &scene) {
-    height = 500;
-    initialize();
-
     std::vector<unsigned char> pixels;
 
     for (int j = 0; j < height; j++) {
@@ -35,11 +32,7 @@ cv::Mat Camera::render(VoxelGrid &scene) {
                 Ray r = generate_ray(i, j, (samples_per_pixel > 1));
                 Spectrum sample = trace_ray(r, scene);
 
-                float rr = 1.0 - std::exp(-sample.r),
-                      gr = 1.0 - std::exp(-sample.g),
-                      br = 1.0 - std::exp(-sample.b);
-                color += Spectrum(rr, gr, br).srgb();
-                // color += trace_ray(r, scene).apply_reinhard().srgb();
+                color += trace_ray(r, scene).reinhard_luma().srgb();
             }
 
             color = color * samples_per_pixel_div * 255.0;
@@ -142,17 +135,20 @@ Ray Camera::generate_ray(int pixel_i, int pixel_j, bool rand) {
 }
 
 Spectrum Camera::trace_ray(const Ray &ray, VoxelGrid &scene, int depth) {
-    HitInfo h = scene.hit(ray);
-    if (!h.hit) {
-        Spectrum radiance;
-        for (Light light : scene.lights) {
-            float temp;
-            if (light.bbox.hit(ray, temp)) {
-                radiance += light.radiance;
-            }
-        }
+    Spectrum radiance;
 
-        // radiance = 255.0 * (radiance / (1.0f + radiance));
+    // Ray-scene intersection
+    HitInfo h = scene.hit(ray);
+
+    // Ray-light intersection
+    for (Light light : scene.lights) {
+        float temp;
+        if (light.bbox.hit(ray, temp)) {
+            radiance += light.radiance;
+        }
+    }
+
+    if (!h.hit) {
         return radiance;
     }
 
@@ -173,8 +169,6 @@ Spectrum Camera::trace_ray(const Ray &ray, VoxelGrid &scene, int depth) {
     };
 
     Vec3 normal = h.voxel->get_normal(h.pos);
-    Spectrum radiance;
-
     BSDFSample bs = h.voxel->material.sample();
     
     // Direct lighting
@@ -238,8 +232,6 @@ Spectrum Camera::trace_ray(const Ray &ray, VoxelGrid &scene, int depth) {
 
         radiance += indirect.throughput * trace_ray(indirect, scene, depth + 1);
     }
-
-    // radiance = 255.0 * (radiance / (1.0f + radiance));
 
     return radiance;
 }

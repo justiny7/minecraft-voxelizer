@@ -13,7 +13,7 @@ struct Camera {
 
     int height, width;
     int samples_per_pixel;
-    int max_depth = 2;
+    int max_depth = 4;
     int light_samples = 8;
     float aspect_ratio;
     float vert_fov;

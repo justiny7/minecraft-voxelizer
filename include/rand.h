@@ -13,7 +13,8 @@ namespace RNG {
     int integer(int a, int b);
     bool coin_flip(float p);
 
-    Vec3 sample_hemisphere(float &pdf);
+    Vec3 sample_hemisphere_cosine(float &pdf);
+    Vec3 sample_hemisphere_uniform(float &pdf);
 
 } // namespace RNG
 
