@@ -9,14 +9,18 @@ To do so, the program uses a ray tracer inspired by the implementation [here](ht
 
 ### Results
 <p align="center">
+    <img src="https://github.com/user-attachments/assets/489b6914-eadd-439c-8ba4-8276838f0f70" width="250">
     <img src="https://github.com/user-attachments/assets/a7d50502-ede5-4077-9e31-9cabd4389aad" width="250">
     <img src="https://github.com/user-attachments/assets/fa34ee03-efcd-41f0-bfd0-a6a67fa424ca" width="250">
-    <img src="https://github.com/user-attachments/assets/489b6914-eadd-439c-8ba4-8276838f0f70" width="250">
 </p>
+Complex geometric build renders
 
-_Rendering of complex geometric build_
-
-*Rendering of dog build*
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/a0c1cedf-1cda-4bb6-a2bf-1cf904001fe2" width="250"> // VIEW 16
+    <img src="https://github.com/user-attachments/assets/365a0dc2-8197-40dd-9b0d-961e334c7905" width="250"> // VIEW 6
+    <img src="https://github.com/user-attachments/assets/ba88e612-6871-4d6e-a699-39eadf0325a9" width="250"> // VIEW 7
+</p>
+Dog build renders
 
 ## How to use it
 
